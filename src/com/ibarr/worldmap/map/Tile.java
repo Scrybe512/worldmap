@@ -3,6 +3,7 @@ package com.ibarr.worldmap.map;
 import com.ibarr.pathfinder.Pathfinding;
 import java.awt.Color;
 import java.awt.Graphics;
+import static java.lang.Integer.max;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -88,4 +89,27 @@ public class Tile {
 		}
 		return neighbours;
 	}
+	
+	public void generateMissingNeighbours(boolean recurse) {
+		Set<Tile> newNeighbours = new HashSet<>();
+		for(int xx = max(0, x-1); xx < x+2 && xx < m.getCols(); xx++) {
+			for(int yy = max(0, y-1); yy < y + 2 && yy < m.getRows(); yy++) {
+				if(m.getTile(xx, yy) == null) {
+					Tile t = getNewTile(m, xx, yy, w, h);
+					m.setTile(xx, yy, t);
+					newNeighbours.add(t);
+				}
+			}
+		}
+		if(recurse) {
+			newNeighbours.forEach(t -> {
+				t.generateMissingNeighbours(recurse);
+			});
+		}
+	}
+	
+	protected Tile getNewTile(MapGrid m, int x, int y, int w, int h) {
+		return new Tile(m, x, y, w, h);
+	}
+	
 }

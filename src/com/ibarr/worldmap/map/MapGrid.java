@@ -20,11 +20,16 @@ public class MapGrid {
 		
 		tiles = new Tile[cols][rows];
 		
-		for(int y = 0; y < rows; y++) {
-            for(int x = 0; x < cols; x++) {
-                tiles[x][y] = new Tile(this, x, y, w.getSettings().getWindowWidth()/cols, w.getSettings().getWindowHeight()/rows);
-            }
-        }
+		// need to replace this with a recursive call to the start tile to generate neighbours
+//		for(int y = 0; y < rows; y++) {
+//            for(int x = 0; x < cols; x++) {
+//                tiles[x][y] = new Tile(this, x, y, w.getSettings().getWindowWidth()/cols, w.getSettings().getWindowHeight()/rows);
+//            }
+//        }
+
+		tiles[cols/2][rows/2] = new ElevationTile(this, cols/2, rows/2, w.getSettings().getWindowWidth()/cols, w.getSettings().getWindowHeight()/rows, 0);
+		tiles[cols/2][rows/2].generateMissingNeighbours(true);
+
 	}
 	
 	public void render(Graphics g) {
@@ -40,6 +45,10 @@ public class MapGrid {
 			return tiles[x][y];
 		}
 		return null;
+	}
+	
+	public void setTile(int x, int y, Tile t) {
+		tiles[x][y] = t;
 	}
 	
     public int getCols() {

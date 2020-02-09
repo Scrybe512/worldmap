@@ -29,4 +29,9 @@ public class ElevationTile extends Tile {
 		return Color.WHITE;	// this is the default colour
 	}
 
+	@Override
+	protected ElevationTile getNewTile(MapGrid m, int x, int y, int w, int h) {
+		return new ElevationTile(m, x, y, w, h, 1);
+	}
+	
 }
