@@ -44,7 +44,7 @@ public class Tile {
 
 	}
 
-	private Color getColor() {
+	protected Color getColor() {
 		return Color.WHITE;	// this is the default colour
 	}
 

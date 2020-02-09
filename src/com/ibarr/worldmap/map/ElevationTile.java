@@ -1,5 +1,7 @@
 package com.ibarr.worldmap.map;
 
+import java.awt.Color;
+
 /**
  *
  * @author Iain
@@ -17,4 +19,14 @@ public class ElevationTile extends Tile {
 		return elevation;
 	}
 	
+	@Override
+	protected Color getColor() {
+		if(elevation > 0) {
+			return Color.DARK_GRAY;
+		} else if(elevation < 0) {
+			return Color.BLUE;
+		}
+		return Color.WHITE;	// this is the default colour
+	}
+
 }
