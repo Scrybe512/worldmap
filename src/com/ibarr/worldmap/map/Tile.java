@@ -18,7 +18,7 @@ public class Tile {
 	private final int w;
 	private final int h;
 	private final MapGrid m;
-	private final Set<Tile> neighbours;
+	protected final Set<Tile> neighbours;
 
 	public Tile(MapGrid m, int x, int y, int w, int h) {
 		this.m = m;

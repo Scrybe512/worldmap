@@ -12,6 +12,7 @@ public class Settings {
 	private int mapRows = 100;			// number of rows in the map
 	private int fps = 60;				// speed of program
 	private boolean useDiagonals = true;
+	private int elevationChangeProbability = 20;	// 1 in n chance of changing
 
 	public int getWindowWidth() {
 		return windowWidth;
@@ -59,6 +60,14 @@ public class Settings {
 
 	public void setUseDiagonals(boolean useDiagonals) {
 		this.useDiagonals = useDiagonals;
+	}
+
+	public int getElevationChangeProbability() {
+		return elevationChangeProbability;
+	}
+
+	public void setElevationChangeProbability(int elevationChangeProbability) {
+		this.elevationChangeProbability = elevationChangeProbability;
 	}
 
 }
