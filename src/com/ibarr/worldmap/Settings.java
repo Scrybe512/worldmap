@@ -6,6 +6,7 @@ package com.ibarr.worldmap;
  */
 public class Settings {
 
+	private int debugLevel = 1;			// 0 = off, 1 = minimal, 2 = more, 3 = everything
 	private int windowWidth = 500;		// width in pixels
 	private int windowHeight = 500;		// height in pixels
 	private int mapColumns = 100;		// number of columns in the map
@@ -68,6 +69,14 @@ public class Settings {
 
 	public void setElevationChangeProbability(int elevationChangeProbability) {
 		this.elevationChangeProbability = elevationChangeProbability;
+	}
+
+	public int getDebugLevel() {
+		return debugLevel;
+	}
+
+	public void setDebugLevel(int debugLevel) {
+		this.debugLevel = debugLevel;
 	}
 
 }

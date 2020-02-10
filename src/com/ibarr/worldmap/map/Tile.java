@@ -1,11 +1,12 @@
 package com.ibarr.worldmap.map;
 
-import com.ibarr.pathfinder.Pathfinding;
 import java.awt.Color;
 import java.awt.Graphics;
 import static java.lang.Integer.max;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -27,6 +28,12 @@ public class Tile {
 		this.w = w;
 		this.h = h;
 		neighbours = new HashSet<>();
+		getNeighbours().forEach(t -> {
+			t.addNeighbour(this);
+		});
+		if(m.getWorld().getSettings().getDebugLevel() > 2) {
+			Logger.getLogger("Debug").log(Level.INFO, "Tile created at ({0},{1}) with {2} neighbours", new Object[] {x, y, neighbours.size()});
+		}
 	}
 
 	public void render(Graphics g) {
@@ -49,7 +56,7 @@ public class Tile {
 		return Color.WHITE;	// this is the default colour
 	}
 
-	public Set<Tile> getNeighbours() {
+	public final Set<Tile> getNeighbours() {
 		if (neighbours.isEmpty()) {
 			Tile t;
 			t = m.getTile(x - 1, y);
@@ -88,6 +95,10 @@ public class Tile {
 			}
 		}
 		return neighbours;
+	}
+	
+	public void addNeighbour(Tile t) {
+		neighbours.add(t);
 	}
 	
 	public void generateMissingNeighbours(boolean recurse) {

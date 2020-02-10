@@ -1,6 +1,7 @@
 package com.ibarr.worldmap.map;
 
 import java.awt.Color;
+import java.util.Iterator;
 import java.util.Random;
 
 /**
@@ -24,8 +25,9 @@ public class ElevationTile extends Tile {
 		} else {
 			int highest = -99;
 			int lowest = 99;
-			while(neighbours.iterator().hasNext()) {
-				ElevationTile t = (ElevationTile) neighbours.iterator().next();
+			Iterator it = neighbours.iterator();
+			while(it.hasNext()) {
+				ElevationTile t = (ElevationTile) it.next();
 				int e = t.getElevation();
 				if(e > highest) {
 					highest = e;
