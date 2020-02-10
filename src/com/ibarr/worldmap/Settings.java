@@ -14,6 +14,7 @@ public class Settings {
 	private int fps = 60;				// speed of program
 	private boolean useDiagonals = true;
 	private int elevationChangeProbability = 20;	// 1 in n chance of changing
+	private long mapSeed = System.currentTimeMillis();
 
 	public int getWindowWidth() {
 		return windowWidth;
@@ -77,6 +78,14 @@ public class Settings {
 
 	public void setDebugLevel(int debugLevel) {
 		this.debugLevel = debugLevel;
+	}
+
+	public long getMapSeed() {
+		return mapSeed;
+	}
+
+	public void setMapSeed(long mapSeed) {
+		this.mapSeed = mapSeed;
 	}
 
 }
