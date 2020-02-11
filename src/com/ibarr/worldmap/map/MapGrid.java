@@ -2,7 +2,7 @@ package com.ibarr.worldmap.map;
 
 import com.ibarr.worldmap.Worldmap;
 import java.awt.Graphics;
-import java.util.Random;
+import java.security.SecureRandom;
 
 /**
  *
@@ -13,14 +13,14 @@ public class MapGrid {
     private int cols, rows;
 	private Tile[][] tiles;
 	private Worldmap w;
-	private Random mapRng;
+	private SecureRandom mapRng;
 
 	public MapGrid(Worldmap w) {
 		this.w = w;
 		cols = w.getSettings().getMapColumns();
 		rows = w.getSettings().getMapRows();
 		
-		mapRng = new Random(w.getSettings().getMapSeed());
+		mapRng = new SecureRandom();
 		
 		tiles = new Tile[cols][rows];
 		
@@ -31,7 +31,7 @@ public class MapGrid {
 //            }
 //        }
 
-		tiles[cols/2][rows/2] = new ElevationTile(this, cols/2, rows/2, w.getSettings().getWindowWidth()/cols, w.getSettings().getWindowHeight()/rows, 5);
+		tiles[cols/2][rows/2] = new ElevationTile(this, cols/2, rows/2, w.getSettings().getWindowWidth()/cols, w.getSettings().getWindowHeight()/rows, 7);
 		tiles[cols/2][rows/2].generateMissingNeighbours(true);
 
 	}
@@ -67,7 +67,7 @@ public class MapGrid {
 		return w;
 	}
 	
-	public Random getRng() {
+	public SecureRandom getRng() {
 		return mapRng;
 	}
 	

@@ -12,7 +12,7 @@ import java.util.Iterator;
 public class ElevationTile extends Tile {
 
 	private final int MAX_ELEVATION = 10;
-	private final int MIN_ELEVATION = -10;
+	private final int MIN_ELEVATION = -7;
 
 	private final Color SEA10 = new Color(0, 0, 102);		// dark blue
 	private final Color SEA9 = new Color(0, 0, 153);
@@ -74,7 +74,8 @@ public class ElevationTile extends Tile {
 			}
 			// if high = low then can vary either way by 1 based on chance
 			else {
-				if (m.getRng().nextInt(m.getWorld().getSettings().getElevationChangeProbability()) == 0) {
+				double randomDouble = m.getRng().nextDouble();
+				if (randomDouble < m.getWorld().getSettings().getElevationChangeProbability()) {
 					if (m.getRng().nextBoolean()) {
 						this.elevation = min(lowest + 1, MAX_ELEVATION);
 					}
